@@ -1,13 +1,17 @@
 import logo from './logo.svg';
 import './App.css';
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import './bootstrap.min.css';
 
 function App() {
 
   const [email, setEmail] = useState('Hello')
   const [alert, setAlert] = useState({show:false, message:'', type:''})
-
+  const [title, setTitle] = useState('Title')
+  const showAlert = (show = false, type='', msg='') =>{
+    setAlert({show,type,msg})
+  }
+  
   const submitBtn = (e) =>{
     e.preventDefault();
     if(!email) {
@@ -18,11 +22,20 @@ function App() {
     }
   }
 
-  const showAlert = (show = false, type='', msg='') =>{
-    setAlert({show,type,msg})
+ 
+  const Alert = ({type, msg, removeAlert }) => {
+    useEffect(() => {
+        const timeout = setTimeout(() => {
+            removeAlert();
+        }, 5000)
+        return () => clearTimeout(timeout)
+    }, [removeAlert])
+  return (
+      <>
+        <p className={`alert alert-${type}`}>{msg}</p>
+      </>
+  )
   }
-  
-
 
   return (
     <div className="App">

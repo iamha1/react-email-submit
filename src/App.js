@@ -26,11 +26,13 @@ function App() {
 
   return (
     <div className="App">
+    <form onSubmit={submitBtn}>
+    {alert.show && <Alert {...alert} removeAlert={showAlert}/>}
     <h1>{email}</h1>
     <p>Please enter your email: </p>
     <input type="email" placeholder="name@mail.com" value={email} onChange={(e) => setEmail(e.target.value) } />
     <button>Submit</button>
-     
+     </form>
     </div>
   );
 }

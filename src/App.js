@@ -19,6 +19,8 @@ function App() {
     }
     else {
       showAlert(true.valueOf, 'success', 'Enter email successful!')
+      console.log(email)
+      setTitle('Submitted!')
     }
   }
 
@@ -27,7 +29,7 @@ function App() {
     useEffect(() => {
         const timeout = setTimeout(() => {
             removeAlert();
-        }, 5000)
+        }, 10000)
         return () => clearTimeout(timeout)
     }, [removeAlert])
   return (
@@ -41,7 +43,7 @@ function App() {
     <div className="App">
     <form onSubmit={submitBtn}>
     {alert.show && <Alert {...alert} removeAlert={showAlert}/>}
-    <h1>{email}</h1>
+    { <h1>{title}</h1> }
     <p>Please enter your email: </p>
     <input type="email" placeholder="name@mail.com" value={email} onChange={(e) => setEmail(e.target.value) } />
     <button>Submit</button>

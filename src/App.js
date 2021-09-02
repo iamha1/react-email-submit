@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import {useState} from 'react'
+import './bootstrap.min.css';
 
 function App() {
 
@@ -10,9 +11,17 @@ function App() {
   const submitBtn = (e) =>{
     e.preventDefault();
     if(!email) {
-      show
+      showAlert(true, 'danger', 'Please enter email')
+    }
+    else {
+      showAlert(true.valueOf, 'success', 'Enter email successful!')
     }
   }
+
+  const showAlert = (show = false, type='', msg='') =>{
+    setAlert({show,type,msg})
+  }
+  
 
 
   return (
